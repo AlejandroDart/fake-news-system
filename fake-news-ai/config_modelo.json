@@ -1,0 +1,9 @@
+{
+    "mejor_modelo_nombre": "BiLSTM",
+    "mejor_modelo_tipo": "Deep Learning",
+    "f1_score_test": 0.9988555078683834,
+    "feature": "content_clean = title_clean + text_trimmed_300",
+    "vocab_size": 50000,
+    "max_length": 300,
+    "threshold": 0.6000000000000003
+}
