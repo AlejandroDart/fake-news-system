@@ -94,6 +94,7 @@ fake-news-system/
 │   └── public/
 │
 └── README.md
+```
 
 ---
 
