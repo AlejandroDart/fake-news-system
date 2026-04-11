@@ -94,3 +94,12 @@ fake-news-system/
 │   └── public/
 │
 └── README.md
+
+---
+
+## 🎓 Proyecto Académico
+**Asignatura:** Aprendizaje de Máquina  
+**Grupo:** 7  
+**Año:** 2026  
+
+Proyecto desarrollado con fines académicos, integrando **Machine Learning, Deep Learning, API REST y desarrollo web con Laravel** para la detección automática de noticias falsas.
