@@ -78,12 +78,14 @@ fake-news-system/
 │   ├── 01_EDA_Preprocesamiento_FakeNews.ipynb
 │   ├── 02_Modelado_Comparacion_FakeNews.ipynb
 │   ├── 03_Prediccion_CargaModelo_FakeNews.ipynb
-│   ├── fake_news_api.py
+│   ├── Fake.csv
+│   ├── True.csv
 │   ├── config_modelo.json
-│   ├── tokenizer_fake_news.pkl
-│   ├── mejor_modelo_dl.keras
+│   ├── fake_news_api.py
 │   ├── max_length.txt
-│   └── threshold.txt
+│   ├── mejor_modelo_dl.keras
+│   ├── threshold.txt
+│   └── tokenizer_fake_news.pkl
 │
 ├── web-laravel/
 │   ├── app/
