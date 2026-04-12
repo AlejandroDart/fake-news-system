@@ -20,7 +20,7 @@ Este repositorio corresponde al **sistema completo Full Stack + Inteligencia Art
 - 🧠 **Modelo BiLSTM como mejor modelo seleccionado**
 - ⚡ **API REST en Flask para predicción en tiempo real**
 - 🌐 **Interfaz web desarrollada en Laravel**
-- 📊 **Entrenamiento y comparación entre 5 modelos**
+- 📊 **Entrenamiento y comparación entre 6 modelos**
 - 🧪 **Evaluación con Accuracy, Precision, Recall y F1-score**
 - 📁 **Modelo serializado y reutilizable**
 - 🔗 **Integración Laravel → Flask API → Modelo IA**
@@ -49,6 +49,7 @@ Este repositorio corresponde al **sistema completo Full Stack + Inteligencia Art
 - Linear SVC
 - CNN 1D
 - ✅ **BiLSTM (mejor modelo)**
+- LSTM
 
 ---
 
