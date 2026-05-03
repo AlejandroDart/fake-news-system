@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 class FakeNewsController extends Controller
 {
@@ -41,6 +42,24 @@ class FakeNewsController extends Controller
 
             $resultado = $response->json();
 
+            DB::table('prediction_history')->insert([
+                'titulo' => $request->news_title ?? '',
+                'texto' => $request->news_text,
+                'prediccion' => $resultado['prediccion'] ?? 'Sin predicción',
+                'clase' => $resultado['clase'] ?? 0,
+                'probabilidad_fake' => $resultado['probabilidad_fake'] ?? null,
+                'probabilidad_real' => $resultado['probabilidad_real'] ?? null,
+                'modelo' => $resultado['modelo'] ?? 'BiLSTM',
+                'explicacion' => json_encode([
+                    'metodo' => $resultado['metodo_explicabilidad'] ?? 'Sin método',
+                    'interpretacion' => $resultado['interpretacion_explicabilidad'] ?? [],
+                    'detalle' => $resultado['explain_detail'] ?? [],
+                    'palabras' => $resultado['explain_words'] ?? [],
+                    'valores' => $resultado['explain_values'] ?? [],
+                ], JSON_UNESCAPED_UNICODE),
+                'created_at' => now(),
+            ]);
+
             return redirect()
                 ->route('index')
                 ->with('resultado', $resultado)
@@ -67,79 +86,71 @@ class FakeNewsController extends Controller
 
     public function history()
     {
-        $historial = [
-            [
-                'id' => 1,
-                'titulo' => 'Gobierno anuncia nueva reforma educativa nacional',
-                'resultado' => 'Noticia Real',
-                'modelo' => 'BiLSTM',
-                'fecha' => '2026-04-09 09:10'
-            ],
-            [
-                'id' => 2,
-                'titulo' => 'Descubren cura inmediata para todas las enfermedades',
-                'resultado' => 'Noticia Falsa',
-                'modelo' => 'BiLSTM',
-                'fecha' => '2026-04-09 09:22'
-            ],
-            [
-                'id' => 3,
-                'titulo' => 'Nueva tecnología permite traducir pensamientos en tiempo real',
-                'resultado' => 'Noticia Falsa',
-                'modelo' => 'BiLSTM',
-                'fecha' => '2026-04-09 09:40'
-            ],
-            [
-                'id' => 4,
-                'titulo' => 'Ministerio de Salud actualiza protocolo de vacunación',
-                'resultado' => 'Noticia Real',
-                'modelo' => 'BiLSTM',
-                'fecha' => '2026-04-09 10:05'
-            ],
-            [
-                'id' => 5,
-                'titulo' => 'Se confirma apagón mundial de internet por 3 días',
-                'resultado' => 'Noticia Falsa',
-                'modelo' => 'BiLSTM',
-                'fecha' => '2026-04-09 10:18'
-            ],
-            [
-                'id' => 6,
-                'titulo' => 'Universidad presenta nuevo avance en inteligencia artificial',
-                'resultado' => 'Noticia Real',
-                'modelo' => 'BiLSTM',
-                'fecha' => '2026-04-09 10:44'
-            ],
-            [
-                'id' => 7,
-                'titulo' => 'El océano desaparecerá en 10 años, afirman redes sociales',
-                'resultado' => 'Noticia Falsa',
-                'modelo' => 'BiLSTM',
-                'fecha' => '2026-04-09 11:02'
-            ],
-            [
-                'id' => 8,
-                'titulo' => 'Nueva ley regulará el uso de datos biométricos',
-                'resultado' => 'Noticia Real',
-                'modelo' => 'BiLSTM',
-                'fecha' => '2026-04-09 11:30'
-            ],
-            [
-                'id' => 9,
-                'titulo' => 'Hallan ciudad secreta bajo la luna',
-                'resultado' => 'Noticia Falsa',
-                'modelo' => 'BiLSTM',
-                'fecha' => '2026-04-09 11:48'
-            ],
-            [
-                'id' => 10,
-                'titulo' => 'Científicos mejoran precisión de sistemas de detección automática',
-                'resultado' => 'Noticia Real',
-                'modelo' => 'BiLSTM',
-                'fecha' => '2026-04-09 12:10'
-            ],
-        ];
+        $historial = DB::table('prediction_history')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('history', compact('historial'));
+    }
+
+    public function reescanear($id)
+    {
+        $registro = DB::table('prediction_history')->where('id', $id)->first();
+
+        if (!$registro) {
+            return redirect()
+                ->route('history')
+                ->with('error', 'No se encontró el registro seleccionado.');
+        }
+
+        try {
+            $response = Http::timeout(60)->post('http://127.0.0.1:5000/predecir', [
+                'titulo' => $registro->titulo ?? '',
+                'texto'  => $registro->texto
+            ]);
+
+            if ($response->failed()) {
+                return redirect()
+                    ->route('history')
+                    ->with('error', 'No se pudo volver a escanear la noticia.');
+            }
+
+            $resultado = $response->json();
+
+            DB::table('prediction_history')
+                ->where('id', $id)
+                ->update([
+                    'prediccion' => $resultado['prediccion'] ?? 'Sin predicción',
+                    'clase' => $resultado['clase'] ?? 0,
+                    'probabilidad_fake' => $resultado['probabilidad_fake'] ?? null,
+                    'probabilidad_real' => $resultado['probabilidad_real'] ?? null,
+                    'modelo' => $resultado['modelo'] ?? 'BiLSTM',
+                    'explicacion' => json_encode([
+                        'metodo' => $resultado['metodo_explicabilidad'] ?? 'Sin método',
+                        'interpretacion' => $resultado['interpretacion_explicabilidad'] ?? [],
+                        'detalle' => $resultado['explain_detail'] ?? [],
+                        'palabras' => $resultado['explain_words'] ?? [],
+                        'valores' => $resultado['explain_values'] ?? [],
+                    ], JSON_UNESCAPED_UNICODE),
+                    'created_at' => now(),
+                ]);
+
+            return redirect()
+                ->route('history')
+                ->with('success', 'La noticia fue reescaneada y actualizada correctamente.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('history')
+                ->with('error', 'Error al conectar con la API Flask: ' . $e->getMessage());
+        }
+    }
+
+    public function delete($id)
+    {
+        DB::table('prediction_history')->where('id', $id)->delete();
+
+        return redirect()
+            ->route('history')
+            ->with('success', 'Registro eliminado correctamente.');
     }
 }

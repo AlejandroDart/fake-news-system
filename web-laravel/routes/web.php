@@ -8,3 +8,11 @@ Route::post('/analizar', [FakeNewsController::class, 'analizar'])->name('analiza
 Route::get('/reset', [FakeNewsController::class, 'reset'])->name('reset');
 
 Route::get('/history', [FakeNewsController::class, 'history'])->name('history');
+
+Route::post('/history/{id}/reescanear', [FakeNewsController::class, 'reescanear'])
+    ->name('history.reescanear');
+
+Route::delete('/history/{id}', [FakeNewsController::class, 'delete'])
+    ->name('history.delete');
+
+    
