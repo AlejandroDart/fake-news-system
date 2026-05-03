@@ -9,6 +9,7 @@ El proyecto integra:
 - 🌐 **Aplicación web en Laravel**
 - 🤖 **API de predicción en Flask**
 - 🧠 **Modelo Deep Learning BiLSTM**
+- 🗄️ **Base de datos PostgreSQL para persistencia, trazabilidad y análisis de resultados**
 - 📊 **Proceso completo de EDA, entrenamiento y comparación de modelos**
 - 📰 **Predicción usando título + contenido de la noticia**
 
@@ -22,10 +23,11 @@ Este repositorio corresponde al **sistema completo Full Stack + Inteligencia Art
 - 🧠 **Modelo BiLSTM como mejor modelo seleccionado**
 - ⚡ **API REST en Flask para predicción en tiempo real**
 - 🌐 **Interfaz web desarrollada en Laravel**
+- 🗄️ **Almacenamiento en PostgreSQL del historial de predicciones y resultados**
 - 📊 **Entrenamiento y comparación entre 6 modelos**
 - 🧪 **Evaluación con Accuracy, Precision, Recall y F1-score**
 - 📁 **Modelo serializado y reutilizable**
-- 🔗 **Integración Laravel → Flask API → Modelo IA**
+- 🔗 **Integración Laravel → Flask API → Modelo IA → PostgreSQL**
 
 ---
 
@@ -34,7 +36,7 @@ Este repositorio corresponde al **sistema completo Full Stack + Inteligencia Art
 ### 🌐 Frontend / Web
 - Laravel 11
 - Blade Templates
-- Bootstrap / CSS
+- CSS personalizado
 - PHP 8+
 
 ### 🤖 Módulo IA / API
@@ -44,6 +46,11 @@ Este repositorio corresponde al **sistema completo Full Stack + Inteligencia Art
 - Scikit-learn
 - Pandas
 - NumPy
+
+### 🗄️ Base de Datos
+- PostgreSQL
+- Almacenamiento de historial de predicciones
+- Persistencia de probabilidades y explicabilidad del modelo
 
 ### 🧠 Modelos implementados
 - Multinomial Naive Bayes
@@ -77,6 +84,10 @@ Este modelo fue exportado y reutilizado en la API Flask para realizar inferencia
 ```bash
 fake-news-system/
 │
+├── base-de-datos/
+│   ├── schema.sql
+│   └── seed_data.sql
+│
 ├── fake-news-ai/
 │   ├── 01_EDA_Preprocesamiento_FakeNews.ipynb
 │   ├── 02_Modelado_Comparacion_FakeNews.ipynb
@@ -106,4 +117,4 @@ fake-news-system/
 **Grupo:** 7  
 **Año:** 2026  
 
-Proyecto desarrollado con fines académicos, integrando **Machine Learning, Deep Learning, API REST y desarrollo web con Laravel** para la detección automática de noticias falsas.
+Proyecto desarrollado con fines académicos, integrando **Machine Learning, Deep Learning, API REST, base de datos PostgreSQL y desarrollo web con Laravel** para la detección automática de noticias falsas.
