@@ -2,6 +2,8 @@
 
 **Fake News System** es un sistema web inteligente desarrollado con **Laravel + Flask API + Deep Learning**, diseñado para detectar si una noticia es **real o falsa** mediante un modelo de **BiLSTM entrenado con TensorFlow/Keras**.
 
+El sistema incluye un módulo de persistencia de datos en **PostgreSQL**, donde se almacena el historial de predicciones, probabilidades y explicabilidad del modelo, permitiendo trazabilidad, análisis posterior y reutilización de resultados.
+
 El proyecto integra:
 
 - 🌐 **Aplicación web en Laravel**
