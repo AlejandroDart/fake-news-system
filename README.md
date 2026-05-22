@@ -10,7 +10,7 @@ El proyecto integra:
 - 🤖 **API de predicción en Flask**
 - 🧠 **Modelo Deep Learning BiLSTM**
 - 🗄️ **Base de datos PostgreSQL para persistencia, trazabilidad y análisis de resultados**
-- 📊 **Proceso completo de EDA, entrenamiento, comparación de modelos y evaluación experimental de técnicas de balanceo de datos**
+- 📊 **Proceso completo de EDA, entrenamiento y comparación de modelos**
 - ⚖️ **Evaluación de técnicas de balanceo: Undersampling, Oversampling y Class Weight**
 - 📰 **Predicción usando título + contenido de la noticia**
 
