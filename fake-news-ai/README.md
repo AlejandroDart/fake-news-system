@@ -3,8 +3,10 @@
 Este módulo contiene todo el flujo de **análisis, entrenamiento, selección y despliegue del modelo de inteligencia artificial** utilizado en el sistema **Fake News System**.
 
 ## 📌 Contenido del módulo
-- 📊 **EDA y preprocesamiento** del dataset
-- 🧠 **Entrenamiento y comparación de 6 modelos**
+- 📊 **EDA y preprocesamiento del dataset**
+- 🧠 **Entrenamiento, evaluación y comparación de 6 modelos**
+- ⚖️ **Evaluación experimental de técnicas de balanceo de datos**
+- 🔬 **Comparación de Undersampling, Oversampling y Class Weight**
 - 🏆 **Selección automática del mejor modelo (BiLSTM)**
 - 🚀 **API Flask para predicción en tiempo real**
 - 💾 **Artefactos serializados para inferencia**
@@ -17,6 +19,11 @@ Este módulo contiene todo el flujo de **análisis, entrenamiento, selección y 
 - CNN 1D
 - ✅ **BiLSTM (mejor modelo)**
 - LSTM
+
+## ⚖️ Técnicas de balanceo evaluadas
+- Undersampling
+- Oversampling
+- Class Weight
 
 ## 📂 Archivos principales
 - `01_EDA_Preprocesamiento_FakeNews.ipynb` → análisis exploratorio y limpieza
