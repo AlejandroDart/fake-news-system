@@ -112,6 +112,14 @@ fake-news-system/
 
 ---
 
+## 🎥 Video Demo
+
+Puedes ver una demostración completa del funcionamiento del sistema en el siguiente video:
+
+🔗 [Ver Demo en YouTube](https://www.youtube.com/watch?v=tVaTJICesr4)
+
+---
+
 ## 🎓 Proyecto Académico
 **Asignatura:** Aprendizaje de Máquina  
 **Grupo:** 7  
