@@ -10,7 +10,8 @@ El proyecto integra:
 - 🤖 **API de predicción en Flask**
 - 🧠 **Modelo Deep Learning BiLSTM**
 - 🗄️ **Base de datos PostgreSQL para persistencia, trazabilidad y análisis de resultados**
-- 📊 **Proceso completo de EDA, entrenamiento y comparación de modelos**
+- 📊 **Proceso completo de EDA, entrenamiento, comparación de modelos y evaluación experimental de técnicas de balanceo de datos**
+- ⚖️ **Evaluación de técnicas de balanceo: Undersampling, Oversampling y Class Weight**
 - 📰 **Predicción usando título + contenido de la noticia**
 
 Este repositorio corresponde al **sistema completo Full Stack + Inteligencia Artificial** del proyecto académico.
@@ -24,7 +25,7 @@ Este repositorio corresponde al **sistema completo Full Stack + Inteligencia Art
 - ⚡ **API REST en Flask para predicción en tiempo real**
 - 🌐 **Interfaz web desarrollada en Laravel**
 - 🗄️ **Almacenamiento en PostgreSQL del historial de predicciones y resultados**
-- 📊 **Entrenamiento y comparación entre 6 modelos**
+- 📊 **Entrenamiento, evaluación y comparación entre 6 modelos**
 - 🧪 **Evaluación con Accuracy, Precision, Recall y F1-score**
 - 📁 **Modelo serializado y reutilizable**
 - 🔗 **Integración Laravel → Flask API → Modelo IA → PostgreSQL**
@@ -59,6 +60,11 @@ Este repositorio corresponde al **sistema completo Full Stack + Inteligencia Art
 - CNN 1D
 - ✅ **BiLSTM (mejor modelo)**
 - LSTM
+
+### ⚖️ Técnicas de balanceo evaluadas
+- Undersampling
+- Oversampling
+- Class Weight
 
 ---
 
