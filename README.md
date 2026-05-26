@@ -26,6 +26,7 @@ Este repositorio corresponde al **sistema completo Full Stack + Inteligencia Art
 - 🌐 **Interfaz web desarrollada en Laravel**
 - 🗄️ **Almacenamiento en PostgreSQL del historial de predicciones y resultados**
 - 📊 **Entrenamiento, evaluación y comparación entre 6 modelos**
+- ⚖️ **Evaluación experimental del efecto del balanceo de datos**
 - 🧪 **Evaluación con Accuracy, Precision, Recall y F1-score**
 - 📁 **Modelo serializado y reutilizable**
 - 🔗 **Integración Laravel → Flask API → Modelo IA → PostgreSQL**
